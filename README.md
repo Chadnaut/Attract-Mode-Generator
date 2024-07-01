@@ -1,6 +1,13 @@
 # Attract-Mode-Generator
 
-Create a series of config files for debugging, including: `displays`, `filters`, `emulators`, `layouts`, `romlists`, `favourites`, `tags`, `stats`, `wheels`, and `snaps`.
+> Create a series of config files for debugging  
+> Version 0.0.1  
+> Chadnaut 2024  
+> https://github.com/Chadnaut/Attract-Mode-Generator  
+
+## Overview
+
+Generate randomized content including: `displays`, `filters`, `emulators`, `layouts`, `romlists`, `favourites`, `tags`, `stats`, `wheels`, and `snaps`.
 
 |![Example](./.readme/wheel/pszoac3.png)|![Example](./.readme/wheel/slja10.png)|![Example](./.readme/wheel/favach16.png)|
 |:-:|:-:|:-:|
