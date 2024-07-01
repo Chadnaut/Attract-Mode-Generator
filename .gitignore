@@ -1,0 +1,12 @@
+# general
+__pycache__/
+.work/
+example/
+TODO.md
+
+# nuitka
+*.build/
+*.dist/
+*.onefile-build/
+nuitka-crash-report.xml
+*.exe
