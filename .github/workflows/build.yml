@@ -84,6 +84,8 @@ jobs:
 
     - name: Create Release
       uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         name: Generate Plus ${{ steps.prepare_artifacts.outputs.current_tag }}
         draft: true
