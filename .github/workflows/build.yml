@@ -42,14 +42,14 @@ jobs:
 
       - name: Copy Datafiles
         run: |
-          mkdir "${GITHUB_WORKSPACE}/build/"
+          mkdir "${GITHUB_WORKSPACE}/build"
           cp -R data "${GITHUB_WORKSPACE}/build/"
           cp -R .readme "${GITHUB_WORKSPACE}/build/"
           cp README.md "${GITHUB_WORKSPACE}/build/"
 
       - name: Create Archive
         run: |
-          7z a "generate-${{ matrix.os }}.7z" ./build/*
+          7z a "generate-${{ matrix.os }}.7z" "${GITHUB_WORKSPACE}/build/*"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
