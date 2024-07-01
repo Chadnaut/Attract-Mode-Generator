@@ -52,11 +52,40 @@ jobs:
           7z a "generate-${{ matrix.os }}.7z" "${GITHUB_WORKSPACE}/build/*"
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ runner.os }} Build
+          name: ${{ matrix.os }}-build
           path: |
             *.7z
           # build/*.exe
           # build/*.bin
           # build/*.app/**/*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+
+    - name: Prepare Artifacts
+      id: prepare_artifacts
+      run: |
+        tag="${GITHUB_REF#refs/*/}"
+        echo "current_tag=${tag}" >> $GITHUB_OUTPUT
+        mkdir -p "${GITHUB_WORKSPACE}"/release
+        find "${GITHUB_WORKSPACE}"/artifacts/ -name "*.7z" | while read f ; do
+          p="$(basename "$f")"
+          cp -v "$f" "${GITHUB_WORKSPACE}/release/generate-${GITHUB_REF#refs/*/}-${p#generate-}"
+        done
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: Generate Plus ${{ steps.prepare_artifacts.outputs.current_tag }}
+        draft: true
+        prerelease: false
+        files: release/generate-*.7z
