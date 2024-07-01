@@ -9,7 +9,7 @@ if __name__ == "__main__":
     import sys, os, shutil
     from optparse import OptionParser
 
-    version = "Generate-Plus 0.0.1"
+    version = "Generate-Plus 0.0.2"
     parser = OptionParser(
         description=f"{version} creates a series of config files for debugging.",
         version=version,
